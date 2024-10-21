@@ -18,7 +18,7 @@ const args = process.argv
 
 async function main() {
   try {
-    await createApp(store, args);
+    return await createApp(store, args);
   } catch(error) {
     if (error instanceof AppError) {
       console.error(error.message);
