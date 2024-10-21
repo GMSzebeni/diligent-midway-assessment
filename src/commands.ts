@@ -27,3 +27,9 @@ export async function details(store: Store<RecipeType[]>, id: string[]) {
   }
   console.log(`ID: ${recipeToShow.id}\nName: ${recipeToShow.name}`);
 }
+
+export async function create(store: Store<RecipeType[]>, name: string[]) {
+  if (!name || name.length !== 1) {
+    throw new AppError('Please provide a valid name!');
+  }
+}
