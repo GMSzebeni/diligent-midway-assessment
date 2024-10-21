@@ -1,4 +1,5 @@
 import { createApp } from './app';
+import { AppError } from './app.error';
 import { RecipeType } from './recipe';
 import { FileStore } from './stores/file.store';
 import { join } from 'node:path';
@@ -16,7 +17,16 @@ const store = new FileStore<RecipeStore>(fileToStore, initialRecipes);
 const args = process.argv
 
 async function main() {
-  return await createApp(store, args);
+  try {
+    const app =  await createApp(store, args);
+    console.log(app);
+  } catch(error) {
+    if (error instanceof AppError) {
+      console.error(error.message);
+    } else {
+      console.log(error);
+    }
+  }
 }
 
 main()
