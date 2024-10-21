@@ -1,5 +1,5 @@
 import { AppError } from './app.error';
-import { list } from './commands';
+import { list, details, create } from './commands';
 import { Store } from './stores/store.type';
 import { RecipeType } from './recipe';
 
@@ -9,7 +9,9 @@ export async function createApp(store: Store<RecipeType[]>, args: string[], ) {
   const [, , command, ...restArgs] = args;
   
   const commands: Record<string, Command> = {
-    'list': list
+    'list': list,
+    'details': details,
+    'create': create
   }
 
   if(command in commands) {
